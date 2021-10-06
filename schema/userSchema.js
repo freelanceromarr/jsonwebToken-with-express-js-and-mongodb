@@ -13,6 +13,10 @@ const userSchema =  mongoose.Schema(
     password: { 
         type: String,
         required: true,
+    },
+    todo: { 
+        type: mongoose.Types.ObjectId,
+        ref: "Todo"
     }
 }
 )

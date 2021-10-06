@@ -57,9 +57,9 @@ userrouter.post('/login', async (req, res) => {
 })
 
 //authenticated route
-userrouter.get('/:id', checkauth ,async function(req, res) {
+userrouter.get('/', checkauth ,async function(req, res) {
     try {
-        const user= await User.find({_id:req.params.id})
+        const user= await User.find({}).populate("todo")
         res.status(200).json({user:user})
     } catch (error) {
         res.status(500).json({error:error})
@@ -71,5 +71,14 @@ userrouter.get('/:id', checkauth ,async function(req, res) {
 // userrouter.get('/', (req, res) => {
 //     res.send('I am working')
 // });
+
+userrouter.get('/alluser', async (req, res) => {
+    try {
+    const resutl= await User.find({}).populate('todo');
+    res.status(200).json({result: resutl})
+    } catch (error) {
+    res.status(500).json({result: "something error happened"})
+    }
+})
 
 module.exports = userrouter;

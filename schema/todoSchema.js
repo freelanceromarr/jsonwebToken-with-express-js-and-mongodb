@@ -9,7 +9,7 @@ const todoSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    userid: {
+    user: {
         type: mongoose.Types.ObjectId,
         ref: "User",
     }
